@@ -29,6 +29,6 @@ class Constants:
 
     BaseUrl = "https://www.tickspot.com/api/v2/"
     BaseUrlSubId = "https://www.tickspot.com/%s/api/v2/"
-    UserAgent = {"User-agent": f"DPS ({ env.get('TICKSPOT_USERNAME')})"}
+    UserAgent = {"User-agent": f"DPS ({env.get('TICKSPOT_USERNAME')})"}
     DPSProjectId = 1955215
     DateFormat = "%Y-%m-%d"

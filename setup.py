@@ -24,7 +24,7 @@ def get_requirements(fileName):
 install_requires = get_requirements("requirements.txt")
 
 setup(
-    name="tick",
+    name="tickspot",
     version="0.0.0",
     author="Andrew Beattie",
     description="Interact with TickSpot with Python",
