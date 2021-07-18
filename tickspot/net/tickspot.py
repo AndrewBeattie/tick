@@ -15,9 +15,9 @@ date : summary of changes
         - https://github.com/tick/tick-api/blob/master/sections/entries.md
 """
 import json
-from settings import env
 from pprint import PrettyPrinter
-from tickspot.network import Entry, Project, Task, Authorize
+from tickspot.settings import env
+from tickspot.net import Entry, Project, Task, Authorize
 
 
 class TickSpot(Authorize):

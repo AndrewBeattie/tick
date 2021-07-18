@@ -1,6 +1,6 @@
 from pprint import PrettyPrinter
 from argparse import ArgumentParser
-from tickspot.tickspot import fetch, create
+from tickspot.net.tickspot import fetch, create
 
 if __name__ == "__main__":
     """Examples of How To Use

@@ -2,7 +2,7 @@ import json
 import requests
 import logging
 from typing import Tuple
-from tickspot.manual_settings import Constants
+from tickspot.net.manual_settings import Constants
 
 
 logger = logging.getLogger(__name__)

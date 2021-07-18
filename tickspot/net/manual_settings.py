@@ -1,4 +1,4 @@
-from settings import env
+from tickspot.settings import env
 
 
 class Tasks:
