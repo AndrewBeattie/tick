@@ -1,3 +1,9 @@
+"""
+This module defines a Constants class that stores various constants used in the application.
+The constants are implemented as read-only properties to prevent accidental modification.
+"""
+
+
 class Constants:
     def __init__(self):
         self.__BASE_URL: str = "https://www.tickspot.com/api/v2/"

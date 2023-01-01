@@ -1,3 +1,7 @@
+"""
+Base model for calls to TickSpot. Provides methods for making POST, GET, and list requests to TickSpot's API.
+"""
+
 import json
 import requests
 import logging
@@ -11,7 +15,7 @@ constants = Constants()
 
 class Authorize:
     """
-    A class for authorizing a Ticker user.
+    A class for authorizing a TickSpot user.
     """
 
     __slots__ = ["username", "password", "token", "sub_id"]
@@ -21,8 +25,8 @@ class Authorize:
         Initialize a new Authorize object with the given username and password.
 
         Args:
-        - username: The Ticker username to authorize.
-        - password: The Ticker password to authorize.
+        - username: The TickSpot username to authorize.
+        - password: The TickSpot password to authorize.
         """
         self.token, self.sub_id = self.authorize(username, password)
 
@@ -31,8 +35,8 @@ class Authorize:
         Authorize the given username and password, and return a tuple containing the API token and subscription ID.
 
         Args:
-        - username: The Ticker username to authorize.
-        - password: The Ticker password to authorize.
+        - username: The TickSpot username to authorize.
+        - password: The TickSpot password to authorize.
 
         Returns:
         - A tuple containing the API token and subscription ID for the authorized user.
@@ -54,7 +58,7 @@ class Authorize:
 class Resource(object):
     __slots__ = ["token", "sub_id"]
     """
-    Base model for calls to Ticker
+    Base model for calls to TickSpot
     """
 
     def __init__(self, token: str, user: str, sub_id: str):
@@ -69,17 +73,9 @@ class Resource(object):
             "Authorization": f"Token token={self.token}"
         }
 
-    @headers.setter
-    def headers(self) -> dict:
-        if not self.headers:
-            headers = {"User-agent": self.user_agent}
-            headers.update({"Authorization": f"Token token={self.token}"})
-            self.headers = headers
-        return self.headers
-
     def post(self, obj: str, data: dict) -> Any:
         """
-        Make a POST request to Ticker's API.
+        Make a POST request to TickSpot's API.
         
         Args:
         - obj: the endpoint to make the request to.
@@ -96,7 +92,7 @@ class Resource(object):
 
     def get(self, obj: str) -> Any:
         """
-        Make a GET request to Ticker's API.
+        Make a GET request to TickSpot's API.
         
         Args:
         - obj: the endpoint to make the request to.
@@ -112,7 +108,7 @@ class Resource(object):
 
     def list(self, obj: str) -> Any:
         """
-        Make a GET request to Ticker's API to retrieve a list of resources.
+        Make a GET request to TickSpot's API to retrieve a list of resources.
         
         Args:
         - obj: the endpoint to make the request to.
@@ -128,7 +124,7 @@ class Resource(object):
 
 class Entry(Resource):
     """
-    A class for interacting with Ticker entries.
+    A class for interacting with TickSpot entries.
     """
 
     def __init__(self, token: str, user: str, sub_id: str):
@@ -136,8 +132,8 @@ class Entry(Resource):
         Initialize a new Entry object with the given sub_id and token.
 
         Args:
-        - sub_id: The Ticker subscription ID.
-        - token: The authorization token for the Ticker API.
+        - sub_id: The TickSpot subscription ID.
+        - token: The authorization token for the TickSpot API.
         """
         self.sub_id = sub_id
         self.token = token
@@ -145,7 +141,7 @@ class Entry(Resource):
 
     def post(self, data: Dict) -> Dict:
         """
-        Make a POST request to the Ticker API to create a new entry.
+        Make a POST request to the TickSpot API to create a new entry.
 
         Args:
         - data: The data for the new entry.
@@ -178,8 +174,8 @@ class Task(Resource):
         Initialize a new Task object with the given sub_id and token.
 
         Args:
-        - sub_id: The Ticker subscription ID.
-        - token: The authorization token for the Ticker API.
+        - sub_id: The TickSpot subscription ID.
+        - token: The authorization token for the TickSpot API.
         """
         self.sub_id = sub_id
         self.token = token
@@ -190,7 +186,7 @@ class Task(Resource):
         Get a list of tasks available to the user.
 
         Args:
-        - project_id: The ID of a specific Ticker project. If provided, only tasks belonging to the project will be returned.
+        - project_id: The ID of a specific TickSpot project. If provided, only tasks belonging to the project will be returned.
 
         Returns:
         - A list of dictionaries containing information on each task available to the user.
@@ -219,8 +215,8 @@ class Project(Resource):
         Initialize a new Project object with the given sub_id and token.
 
         Args:
-        - sub_id: The Ticker subscription ID.
-        - token: The authorization token for the Ticker API.
+        - sub_id: The TickSpot subscription ID.
+        - token: The authorization token for the TickSpot API.
         """
         self.sub_id = sub_id
         self.token = token

@@ -1,19 +1,7 @@
-""" To Do
- - Pull info from JIRA tickets
- - Return responses that are more informative
+"""
+A class for interacting with TickSpot's API. Provides methods for listing tasks, projects, entries, and creating new entries.
 """
 
-""" Change Log
-date : summary of changes
-    user email
-        - details or references used
-    
-04/08/2020: Filling in an entire month, check to see if days are not filled and summarizing current entries for a date range
-        - https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases
-
-31/07/2020: Creating base classes and models for GET and POST requests
-        - https://github.com/tick/tick-api/blob/master/sections/entries.md
-"""
 import time
 import datetime
 from pprint import PrettyPrinter
@@ -98,15 +86,6 @@ def fetch(args):
 
 
 def create(args):
-    import holidays
-
-    if args.vacation:
-        dates = holidays.CountryHoliday(
-            env.get("DATE_COUNTRY"), prov=env.get("DATE_PROVINCE"), state=env.get("DATE_STATE")
-        )
-        if args.date in dates:
-            raise ValueError("Date occurs on a holiday.")
-
     tickspot = TickSpot(
         username=env.get("TICKSPOT_USERNAME"), password=env.get("TICKSPOT_PASSWORD")
     )
